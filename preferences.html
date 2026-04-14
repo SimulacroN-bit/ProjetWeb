@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,29 +28,37 @@
     <h4 class="display-4 titre">Préférences du site</h4>
         <div class="d-flex justify-content-around">
         <h4>Thème du site</h4>
-        <select class="form-select form-select-sm toggleTheme" aria-label="themeSelector">
+        <select class="form-select form-select-sm toggleTheme" id="themeSelector">
         <option selected value="1">Clair</option>
         <option value="2">Sombre</option>
         </select>
         </div>
-        <fieldset class="form-group titre">
-            <div class="row">
-                <legend class="row">Format d'affichage de la liste des apprenants</legend>
+        <div class="d-flex justify-content-around">
+        <fieldset>
+            <div class="d-flex">
+                    <legend>Format d'affichage de la liste des apprenants</legend>
+                    <div class="d-flex flex-column">
                     <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioChoice" id="list" value="list" checked>
-                    <label class="form-check-label" for="affichageChoice">
+                    <input class="form-check-input" type="radio" name="radioChoice" id="affichage" value="1" checked>
+                    <label class="form-check-label" for="list">
                      Liste
                     </label>
                     </div>
                     <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioChoice" id="cards" value="cards">
-                    <label class="form-check-label" for="affichageChoice">
+                    <input class="form-check-input" type="radio" name="radioChoice" id="affichage" value="2">
+                    <label class="form-check-label" for="cards">
                     Cartes
                     </label>
+                    </div>
                     </div>
                 </div>
             </div>
         </fieldset>
+    </section>
+    <section class="d-flex justify-content-center">
+    <button type="button" class="btn btn-outline-secondary btn-lg shadow titre"><a href="index.html">Retour à la page d'accueil</a>
+    </button>
+    <button type="submit" class="btn btn-outline-secondary btn-lg shadow titre"><a href="">Enregistrer</a></button>
     </section>
 </body>
 </html>

@@ -34,3 +34,9 @@ nav {
   display: flex;
   width: 10%;
 }
+
+.description {
+  border: 2px solid black;
+  width: 50%;
+  height: 50%;
+}
