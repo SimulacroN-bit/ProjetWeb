@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-light">
+        <a class="navbar-brand" href="#">
+        <img src="images/logo.png" width="80" height="80" class="d-inline-block align-top" alt="Logo de l'ENI">
+        </a>
+        <h1 class="display-3 d-inline-block"> 
+            PROMO EDWM2603</h1>
+        
+        <form class="form-inline">
+        <button class="btn btn-success btn-lg shadow" type="button"><a href="index.html" class="text-white">Accueil</a></button>
+        <button class="btn btn-success btn-lg shadow" type="button"><a href="preferences.html" class="text-white">Préférences</a></button>
+        <button class="btn btn-success btn-lg shadow" type="button"><a href="carte.html" class="text-white">Carte</a></button>
+        <button class="btn btn-success btn-lg shadow" type="button"><a href="informations.html" class="text-white">Informations</a></button>
+        </form>
+        </nav>
+    </header>
+        <fieldset class="form-group">
+            <div class="row">
+                <legend class="row flex-row-reverse">Type d'affichage</legend>
+                <div class="radioDisplay">
+                    <div class="form-check form-check-inline ">
+                    <input class="form-check-input" type="radio" name="radioChoice" id="list" value="list" checked>
+                    <label class="form-check-label" for="affichageChoice">
+                     Liste
+                    </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="radioChoice" id="cards" value="cards">
+                    <label class="form-check-label" for="affichageChoice">
+                    Cartes
+                    </label>
+                    </div>
+                </div>
+            </div>
+        </fieldset>    
+    <section>
+    <table class="table table-hover table-striped table-responsive-md"><h3>Liste des apprenants</h3>
+        <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Ville</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Otto</th>
+                <td>Mark</td>
+                <td>Rennes</td>
+                <td>Détails</td>
+                </tr>
+                <tr>
+                <th scope="row">Thornton</th>
+                <td>Jacob</td>
+                <td>Nantes</td>
+                <td>Détails</td>
+            </tr>
+            <tr>
+                <th scope="row">Blacksmith</th>
+                <td>Larry</td>
+                <td>Niort</td>
+                <td>Détails</td>
+            </tr>
+        </tbody>
+    </table>
+    </section>
+</body>
+</html>
