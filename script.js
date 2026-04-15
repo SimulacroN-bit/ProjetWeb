@@ -16,7 +16,25 @@ function saveProfile(){
     localStorage.setItem('mode', mode)
     localStorage.setItem('affichage', affichage)
     alert("Préférences enregistrées !")
+    displayMode(mode)
 }
+
+//Dark Theme sur toute les pages
+
+    const getStoredTheme = localStorage.getItem('mode')
+    console.log(getStoredTheme)
+
+    function displayMode(mode) {
+    if (mode === 'Dark') {
+        document.documentElement.setAttribute('data-bs-theme', 'dark');
+    } else if (mode === 'Light') {
+        document.documentElement.setAttribute('data-bs-theme', 'light');
+    } else {
+        document.documentElement.setAttribute('data-bs-theme', 'light');
+    }
+}
+displayMode(getStoredTheme);
+
 
 //Tableau JSON
 
@@ -25,6 +43,8 @@ fetch('promo.json').then(reponse => reponse.json()).then(promo => afficheData(pr
 let tableauLigne = []
 
 function afficheData(promo) {
+
+        //initialiser
         console.log(promo.apprenant)
         tableauLigne = promo.apprenant;
         console.log(tableauLigne)
@@ -35,26 +55,28 @@ function afficheData(promo) {
             const ligne = document.createElement('tr');
             console.log(ligne)
 
+            //colonne nom
+
             const nom = document.createElement('td');
             nom.innerText = promo.nom;
             ligne.appendChild(nom);
             console.log(nom)
 
-            //colo
+            //colonne prenom
 
             const prenom = document.createElement('td');
             prenom.innerText = promo.prenom;
             ligne.appendChild(prenom);
             console.log(prenom)
 
-            // Colonne Ville
+            //colonne ville
 
             const ville = document.createElement('td');
             ville.innerText = promo.ville;
             ligne.appendChild(ville);
             console.log(ville)
 
-            // Colonne Détails
+            //colonne détails
             const tdAction = document.createElement("td");
             const btnDetails = document.createElement("button");
             btnDetails.innerText = "Détails";
