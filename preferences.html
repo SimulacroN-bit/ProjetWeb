@@ -29,23 +29,23 @@
         <div class="d-flex justify-content-around">
         <h4>Thème du site</h4>
         <select class="form-select form-select-sm toggleTheme" id="themeSelector">
-        <option selected value="1">Clair</option>
-        <option value="2">Sombre</option>
+        <option selected value="Light">Clair</option>
+        <option value="Dark">Sombre</option>
         </select>
         </div>
         <div class="d-flex justify-content-around">
         <fieldset>
             <div class="d-flex">
                     <legend>Format d'affichage de la liste des apprenants</legend>
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column" >
                     <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioChoice" id="affichage" value="1" checked>
+                    <input class="form-check-input" type="radio" name="displayChoice" id="affichageList" value="List" checked>
                     <label class="form-check-label" for="list">
                      Liste
                     </label>
                     </div>
                     <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radioChoice" id="affichage" value="2">
+                    <input class="form-check-input" type="radio" name="displayChoice" id="affichageCards" value="Cards">
                     <label class="form-check-label" for="cards">
                     Cartes
                     </label>
@@ -58,7 +58,7 @@
     <section class="d-flex justify-content-center">
     <button type="button" class="btn btn-outline-secondary btn-lg shadow titre"><a href="index.html">Retour à la page d'accueil</a>
     </button>
-    <button type="submit" class="btn btn-outline-secondary btn-lg shadow titre"><a href="">Enregistrer</a></button>
+    <button onclick="saveProfile()" class="btn btn-outline-secondary btn-lg shadow titre text-primary">Enregistrer</a></button>
     </section>
 </body>
 </html>
