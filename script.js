@@ -7,7 +7,7 @@ window.addEventListener('load', function() {
     }
 });
 
-//Enregistrer profile
+//Enregistrer préférences profile
 
 function saveProfile(){
     let mode = document.getElementById('themeSelector').value
@@ -18,13 +18,58 @@ function saveProfile(){
     alert("Préférences enregistrées !")
 }
 
-
 //Tableau JSON
 
-fetch('promo.json').then(reponse => reponse.json()).then(apprenants => afficheData(apprenants))
+fetch('promo.json').then(reponse => reponse.json()).then(promo => afficheData(promo))
 
-function afficheData(apprenants){
-    console.log(apprenants)
-}
+let tableauLigne = []
 
+function afficheData(promo) {
+        console.log(promo.apprenant)
+        tableauLigne = promo.apprenant;
+        console.log(tableauLigne)
+        const tbody = document.getElementById('apprenantsTableau');
+        
+
+        tableauLigne.forEach((promo) => {
+            const ligne = document.createElement('tr');
+            console.log(ligne)
+
+            const nom = document.createElement('td');
+            nom.innerText = promo.nom;
+            ligne.appendChild(nom);
+            console.log(nom)
+
+            //colo
+
+            const prenom = document.createElement('td');
+            prenom.innerText = promo.prenom;
+            ligne.appendChild(prenom);
+            console.log(prenom)
+
+            // Colonne Ville
+
+            const ville = document.createElement('td');
+            ville.innerText = promo.ville;
+            ligne.appendChild(ville);
+            console.log(ville)
+
+            // Colonne Détails
+            const tdAction = document.createElement("td");
+            const btnDetails = document.createElement("button");
+            btnDetails.innerText = "Détails";
+            btnDetails.classList.add("btn", "btn-sm", "btn-info");
+            btnDetails.addEventListener("click", () => {
+            alert(`Détails : ${promo.prenom} ${promo.nom} ${promo.ville}`);
+            // Modale
+            });
+            tdAction.appendChild(btnDetails);
+            ligne.appendChild(tdAction);
+
+            tbody.appendChild(ligne);
+        
+    });
+    }
+
+        afficheData();
 
