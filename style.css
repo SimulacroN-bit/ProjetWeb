@@ -45,3 +45,10 @@ nav {
   display: flex;
   justify-content: space-around;
 }
+
+#map {
+  height: 60vh;
+  width: 120vh;
+  display: flex;
+  justify-items: center;
+}

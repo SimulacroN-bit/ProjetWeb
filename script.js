@@ -38,12 +38,13 @@ displayMode(getStoredTheme);
 //Affichage liste/carte préférences
 
     const getStoredDisplay = localStorage.getItem('affichage')
+    console.log(getStoredDisplay)
 
     function displayType(affichage) {
     if (affichage === 'Cards') {
         document.getElementById('listTable').style.display = 'none';
         document.getElementById('cardsContainer').style.display = '';
-    } else (affichage === 'List')
+    } else if (affichage === 'List')
         document.getElementById('listTable').style.display = '';
         document.getElementById('cardsContainer').style.display = 'none';
     
@@ -53,7 +54,6 @@ displayType(getStoredDisplay);
 //Affichage liste/carte page accueil
 
     const radioButtons = document.querySelectorAll('input[name="displayChoiceHome"]');
-
     let affichageHome = document.querySelector('input[name="displayChoiceHome"]:checked').value
 
     function displayTypeHome(affichageHome) {
@@ -65,9 +65,7 @@ displayType(getStoredDisplay);
     } else if (affichageHome === 'List'){
         listTable.style.display = '';
         cardsContainer.style.display = 'none';
-    } else {
-        listTable.style.display = ''
-    } 
+    }
 }
     function onDisplayChange() {
         const selected = document.querySelector('input[name="displayChoiceHome"]:checked');
@@ -82,8 +80,7 @@ displayType(getStoredDisplay);
        
     });
 
-    onDisplayChange();
-
+onDisplayChange();
 
 
 // //Tableau JSON
