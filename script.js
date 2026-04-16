@@ -38,34 +38,65 @@ displayMode(getStoredTheme);
 //Affichage liste/carte préférences
 
     const getStoredDisplay = localStorage.getItem('affichage')
-    console.log(getStoredDisplay)
 
     function displayType(affichage) {
     if (affichage === 'Cards') {
         document.getElementById('listTable').style.display = 'none';
         document.getElementById('cardsContainer').style.display = '';
-    } else if (affichage === 'List'){
+    } else (affichage === 'List')
         document.getElementById('listTable').style.display = '';
         document.getElementById('cardsContainer').style.display = 'none';
-    } else {
-        document.getElementById('listTable').style.display = ''
+    
     } 
-}
 displayType(getStoredDisplay);
 
+//Affichage liste/carte page accueil
+
+    const radioButtons = document.querySelectorAll('input[name="displayChoiceHome"]');
+
+    let affichageHome = document.querySelector('input[name="displayChoiceHome"]:checked').value
+
+    function displayTypeHome(affichageHome) {
+        const listTable = document.getElementById('listTable');
+        const cardsContainer = document.getElementById('cardsContainer');
+    if (affichageHome === 'Cards') {
+        listTable.style.display = 'none';
+        cardsContainer.style.display = '';
+    } else if (affichageHome === 'List'){
+        listTable.style.display = '';
+        cardsContainer.style.display = 'none';
+    } else {
+        listTable.style.display = ''
+    } 
+}
+    function onDisplayChange() {
+        const selected = document.querySelector('input[name="displayChoiceHome"]:checked');
+        console.log(selected.value)
+        if (selected) {
+            displayTypeHome(selected.value);
+        }
+    }
+
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', onDisplayChange);
+       
+    });
+
+    onDisplayChange();
 
 
-//Tableau JSON
 
-fetch('promo.json').then(reponse => reponse.json()).then(promo => afficheData(promo))
+// //Tableau JSON
 
-let tableauLigne = []
+fetch('promo.json').then(reponse => reponse.json()).then(promo => {
+    afficheData(promo) 
+    displayCards(promo)})
+
 
 function afficheData(promo) {
 
         //initialiser
-        console.log(promo.apprenant)
-        tableauLigne = promo.apprenant;
+        let tableauLigne = promo.apprenant;
         console.log(tableauLigne)
         const tbody = document.getElementById('apprenantsTableau');
         
@@ -112,5 +143,37 @@ function afficheData(promo) {
     });
     }
 
-        afficheData();
+    afficheData();
 
+
+    function displayCards(promo) {
+        let tableauCards = promo.apprenant;
+        console.log(tableauCards)
+        const container = document.getElementById('cardsContainer');
+
+        tableauCards.forEach(apprenant => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.style.width = '18rem';
+
+        card.innerHTML = `
+        <img src="images/avatar.png" style="width: 5em;" class="card-img-top" alt="Photo">
+        <div class="card-body">
+            <h5 class="card-title">${apprenant.nom} ${apprenant.prenom}</h5>
+            <p class="card-text">${apprenant.ville}</p>
+            <a href="#" class="btn btn-primary">Détails</a>
+        </div>
+        `;
+
+        // Événement pour le bouton Détails
+        const btn = card.querySelector('.btn-primary');
+        btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        alert(`Détails : ${apprenant.prenom} ${apprenant.nom} - ${apprenant.ville}`);
+        });
+
+        container.appendChild(card);
+    });
+}
+
+    displayCards();
