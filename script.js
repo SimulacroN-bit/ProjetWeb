@@ -35,6 +35,25 @@ function saveProfile(){
 }
 displayMode(getStoredTheme);
 
+//Affichage liste/carte préférences
+
+    const getStoredDisplay = localStorage.getItem('affichage')
+    console.log(getStoredDisplay)
+
+    function displayType(affichage) {
+    if (affichage === 'Cards') {
+        document.getElementById('listTable').style.display = 'none';
+        document.getElementById('cardsContainer').style.display = '';
+    } else if (affichage === 'List'){
+        document.getElementById('listTable').style.display = '';
+        document.getElementById('cardsContainer').style.display = 'none';
+    } else {
+        document.getElementById('listTable').style.display = ''
+    } 
+}
+displayType(getStoredDisplay);
+
+
 
 //Tableau JSON
 

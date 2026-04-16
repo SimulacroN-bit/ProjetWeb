@@ -40,3 +40,8 @@ nav {
   width: 50%;
   height: 50%;
 }
+
+.displayCards {
+  display: flex;
+  justify-content: space-around;
+}
