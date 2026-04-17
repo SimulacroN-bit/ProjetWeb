@@ -35,59 +35,75 @@ function saveProfile(){
 }
 displayMode(getStoredTheme);
 
-//Affichage liste/carte préférences
+//Affichage général
 
-    const getStoredDisplay = localStorage.getItem('affichage')
-    console.log(getStoredDisplay)
+const storedDisplay = localStorage.getItem('affichage');
+console.log('Préférence stockée :', storedDisplay);
 
-    function displayType(affichage) {
-    if (affichage === 'Cards') {
-        document.getElementById('listTable').style.display = 'none';
-        document.getElementById('cardsContainer').style.display = '';
-    } else if (affichage === 'List')
-        document.getElementById('listTable').style.display = '';
-        document.getElementById('cardsContainer').style.display = 'none';
+function displayType(affichage) {
+    const listTable = document.getElementById('listTable');
+    const cardsContainer = document.getElementById('cardsContainer');
     
-    } 
-displayType(getStoredDisplay);
-
-//Affichage liste/carte page accueil
-
-    const radioButtons = document.querySelectorAll('input[name="displayChoiceHome"]');
-    let affichageHome = document.querySelector('input[name="displayChoiceHome"]:checked').value
-
-    function displayTypeHome(affichageHome) {
-        const listTable = document.getElementById('listTable');
-        const cardsContainer = document.getElementById('cardsContainer');
-    if (affichageHome === 'Cards') {
+    if (affichage === 'Cards') {
         listTable.style.display = 'none';
-        cardsContainer.style.display = '';
-    } else if (affichageHome === 'List'){
+        cardsContainer.style.display = '';  
+    } else if (affichage === 'List') {
         listTable.style.display = '';
         cardsContainer.style.display = 'none';
     }
 }
-    function onDisplayChange() {
-        const selected = document.querySelector('input[name="displayChoiceHome"]:checked');
-        console.log(selected.value)
-        if (selected) {
-            displayTypeHome(selected.value);
-        }
-    }
+const radioButtons = document.querySelectorAll('input[name="displayChoiceHome"]');
 
+function displayTypeHome(affichageHome) {
+    const listTable = document.getElementById('listTable');
+    const cardsContainer = document.getElementById('cardsContainer');
+    
+    if (affichageHome === 'Cards') {
+        listTable.style.display = 'none';
+        cardsContainer.style.display = '';
+    } else if (affichageHome === 'List') {
+        listTable.style.display = '';
+        cardsContainer.style.display = 'none';
+    }
+}
+
+function onDisplayChange() {
+    const selectedRadio = document.querySelector('input[name="displayChoiceHome"]:checked');
+    
+    if (selectedRadio) {
+        displayTypeHome(selectedRadio.value);
+    }
+}
+
+if (localStorage.getItem('theme')) {
+    radioButtons.forEach(radio => {
+        radio.checked = false;
+    });
+} else {
+    if (storedDisplay) {
+        displayType(storedDisplay);
+    }
+    if (storedDisplay === 'Cards') {
+        const cardsRadio = document.querySelector('input[name="displayChoiceHome"][value="Cards"]');
+        if (cardsRadio) cardsRadio.checked = true;
+    } else if (storedDisplay === 'List') {
+        const listRadio = document.querySelector('input[name="displayChoiceHome"][value="List"]');
+        if (listRadio) listRadio.checked = true;
+    }
     radioButtons.forEach(radio => {
         radio.addEventListener('change', onDisplayChange);
-       
     });
-
-onDisplayChange();
+    
+    onDisplayChange();
+}
 
 
 // //Tableau JSON
 
 fetch('promo.json').then(reponse => reponse.json()).then(promo => {
     afficheData(promo) 
-    displayCards(promo)})
+    displayCards(promo)
+})
 
 
 function afficheData(promo) {
@@ -130,7 +146,6 @@ function afficheData(promo) {
             btnDetails.classList.add("btn", "btn-sm", "btn-info");
             btnDetails.addEventListener("click", () => {
             alert(`Détails : ${promo.prenom} ${promo.nom} ${promo.ville}`);
-            // Modale
             });
             tdAction.appendChild(btnDetails);
             ligne.appendChild(tdAction);
@@ -162,7 +177,7 @@ function afficheData(promo) {
         </div>
         `;
 
-        // Événement pour le bouton Détails
+        // bouton Détails
         const btn = card.querySelector('.btn-primary');
         btn.addEventListener('click', (e) => {
         e.preventDefault();
